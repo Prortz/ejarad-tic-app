@@ -30,9 +30,9 @@ void main() {
 
   group('Contacto', () {
     test('celular peruano', () {
-      expect(Validators.celular('951581310'), isNull);
-      expect(Validators.celular('851581310'), isNotNull);
-      expect(Validators.celular('95158131'), isNotNull);
+      expect(Validators.celular('912345678'), isNull);
+      expect(Validators.celular('812345678'), isNotNull);
+      expect(Validators.celular('91234567'), isNotNull);
     });
     test('correo', () {
       expect(Validators.correo('tecnico@ejarad.pe'), isNull);

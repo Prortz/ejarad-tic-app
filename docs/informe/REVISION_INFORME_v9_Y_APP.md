@@ -64,7 +64,7 @@ Incluye: portada, roles del capítulo II, marco teórico, burn-up (en lugar de b
 
 ## 7. Actualización del 19/11/2026 (noche)
 
-- **Recuperación de contraseña** con código enviado al correo (pantalla nueva, 3 pasos). Falta un paso en el panel de Supabase: pegar `supabase/plantillas/recuperar_contrasena.html` en *Authentication → Emails → Templates → Reset password* y comprobar que *Email OTP Length* sea 6. Probado contra el servidor: un código falso responde `otp_expired` y la app lo traduce; el correo inexistente no revela si la cuenta existe.
+- **Recuperación de contraseña** con código enviado al correo (pantalla nueva, 3 pasos). Requiere en el panel de Supabase: un SMTP propio (*Authentication → Emails → SMTP Settings*; el servicio integrado no entrega a usuarios finales) y pegar `supabase/plantillas/recuperar_contrasena.html` en *Templates → Reset password*. La app acepta códigos de 6 a 10 dígitos. Probado contra el servidor: un código falso responde `otp_expired` y la app lo traduce; el correo inexistente no revela si la cuenta existe.
 - **Evidencias y equipo**: el Admin/Supervisor puede eliminar una evidencia (si era la única, el hito vuelve a Pendiente) y quitar personal de una obra. El catálogo tiene interruptor Activo/Inactivo por ítem.
 - **Catálogo Cat 6A / Cat 5e**: `supabase/datos/20261119_catalogo_cat6a_cat5e.sql` usa precios de tiendas peruanas del 19/11/2026 (sin IGV). Los dos patch panels Cat 6A van inactivos porque no se halló precio Cat 6A en soles.
 - **Pruebas**: 36 (motor 14, validadores 12, insumos por categoría 9, arranque 1); cobertura de `validators.dart` 58,8 % (60/102); 33 archivos Dart y 13 190 líneas. `flutter analyze`: 0 errores y 0 advertencias.
