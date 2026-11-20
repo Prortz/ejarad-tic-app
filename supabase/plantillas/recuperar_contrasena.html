@@ -1,0 +1,18 @@
+<!--
+  Plantilla "Reset Password" de Supabase Auth para EJARAD TIC.
+  Dónde pegarla: Dashboard → Authentication → Emails → Templates → "Reset password".
+  Asunto sugerido: Tu código para restablecer la contraseña - EJARAD TIC
+  Importante: la app NO usa enlaces; usa el código de {{ .Token }}.
+-->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:480px;margin:0 auto;padding:24px;background:#080D1A;color:#FFFFFF;border-radius:12px">
+  <h2 style="margin:0 0 8px;color:#00E5FF">EJARAD TIC</h2>
+  <p style="margin:0 0 16px;color:#8899AA;font-size:13px">Infraestructura · Redes · Proyectos</p>
+  <p style="font-size:15px;line-height:1.5">Recibimos una solicitud para restablecer la contraseña de tu cuenta.
+     Ingresa este código en la aplicación:</p>
+  <p style="text-align:center;margin:24px 0">
+    <span style="display:inline-block;padding:14px 28px;background:#1A2236;border:1px solid #2979FF;border-radius:10px;
+                 font-size:32px;letter-spacing:8px;font-weight:bold;color:#FFFFFF">{{ .Token }}</span>
+  </p>
+  <p style="font-size:13px;line-height:1.5;color:#8899AA">El código vence en 1 hora y solo sirve una vez.
+     Si no lo solicitaste, ignora este correo: tu contraseña no cambia.</p>
+</div>
