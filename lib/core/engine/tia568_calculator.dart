@@ -119,10 +119,15 @@ class TIA568Calculator {
     final double metradoCableTotal = metradoBase * (1 + reservaTecnica);
 
     // 2. Cajas/Bobinas de cable de 305m (Redondeo hacia arriba)
-    final int bobinasRequeridas = (metradoCableTotal / metrosPorBobina).ceil();
+    // Se redondea a 2 decimales antes de dividir: con coma flotante, 3 355 m
+    // salían como 3 355,0000000000005 y pedían una bobina de más.
+    final double metradoRedondeado = double.parse(metradoCableTotal.toStringAsFixed(2));
+    final int bobinasRequeridas = (metradoRedondeado / metrosPorBobina).ceil();
 
     // 3. Jacks RJ45 con 10% de margen por merma de crimpado
-    final int jacksRequeridos = (params.puntosTotales * 1.10).ceil();
+    // 10 % de merma con enteros: puntos × 1,10 en coma flotante daba 56 jacks
+    // para 50 puntos (55 exactos).
+    final int jacksRequeridos = (params.puntosTotales * 11 + 9) ~/ 10;
 
     // 4. Patch Cords (1 para puesto de trabajo + 1 para patch panel)
     final int patchCordsRequeridos = params.puntosTotales * 2;
@@ -158,7 +163,7 @@ class TIA568Calculator {
         params.diasEjecucion * params.tecnicosCuadrilla * params.costoJornalTecnico;
 
     return ResultadoCalculoTIA568(
-      metradoCableTotal: double.parse(metradoCableTotal.toStringAsFixed(2)),
+      metradoCableTotal: metradoRedondeado,
       bobinasRequeridas: bobinasRequeridas,
       jacksRequeridos: jacksRequeridos,
       patchCordsRequeridos: patchCordsRequeridos,

@@ -24,6 +24,8 @@ void main() {
       expect(TIA568Calculator.calcular(_p(10, 50)).bobinasRequeridas, 2); // 550 m
       expect(TIA568Calculator.calcular(_p(5, 55)).bobinasRequeridas, 1); // 302.5 m
       expect(TIA568Calculator.calcular(_p(6, 50)).bobinasRequeridas, 2); // 330 m
+      // Exacto: 61 × 50 × 1,10 = 3 355 m = 11 bobinas (la coma flotante daba 12)
+      expect(TIA568Calculator.calcular(_p(61, 50)).bobinasRequeridas, 11);
     });
   });
 
@@ -101,6 +103,9 @@ void main() {
     test('jacks con 10 % de merma y 2 patch cords por punto', () {
       final r = TIA568Calculator.calcular(_p(24, 30));
       expect(r.jacksRequeridos, 27); // ceil(26.4)
+      // Casos que la coma flotante redondeaba mal (50 × 1,10 = 55, no 56)
+      expect(TIA568Calculator.calcular(_p(50, 30)).jacksRequeridos, 55);
+      expect(TIA568Calculator.calcular(_p(100, 30)).jacksRequeridos, 110);
       expect(r.patchCordsRequeridos, 48);
     });
 
