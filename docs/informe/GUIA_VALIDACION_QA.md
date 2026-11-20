@@ -132,10 +132,10 @@ Esperado: 15 tablas con RLS (el informe dice 15), ninguna sin RLS, las funciones
 3. **Paneles Cat 6A:** siguen inactivos; con cable Cat 6A el BOM mostrará el panel con un precio referencial hasta que actives uno con su precio real.
 
 ## 6. Registro de hallazgos
-Copia una fila por cada cosa que no coincida. Los defectos nuevos van a la Tabla 36 del informe (D-18 queda para el hallazgo de hoy; los nuevos empiezan en D-19).
+Copia una fila por cada cosa que no coincida. Los defectos nuevos van a la Tabla 36 del informe (D-18 ya está registrado; los nuevos empiezan en D-19).
 
 | Dónde | Qué pasó | Severidad | ¿Se corrige antes del 27/11? |
 |---|---|---|---|
 | Ejemplo: Fig. 43 | El panel de 48 salió con precio 0 | Baja | Sí |
 
-**Hallazgo de hoy, ya corregido en el código:** el cálculo de jacks y bobinas usaba decimales y fallaba en algunos conteos (50 puntos daban 56 jacks en vez de 55; 61 puntos × 50 m pedían 12 bobinas en vez de 11). Se cambió a aritmética exacta y se reforzaron dos pruebas existentes. Si lo registras como D-18, hay que subir de 17 a 18 los defectos en el informe, el PPT y el Anexo 03.
+**Hallazgo de hoy, ya corregido y registrado como D-18 (informe, PPT y Anexo 03 ya dicen 18 defectos):** el cálculo de jacks y bobinas usaba decimales y fallaba en algunos conteos (50 puntos daban 56 jacks en vez de 55; 61 puntos × 50 m pedían 12 bobinas en vez de 11). Se cambió a aritmética exacta y se reforzaron dos pruebas existentes. Los defectos que encuentres en el recorrido empiezan en D-19.
