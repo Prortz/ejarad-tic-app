@@ -447,8 +447,11 @@ class PdfService {
                 final m = e.value;
                 final p = (m['cantidad_presupuestada'] as num?)?.toDouble() ?? 0.0;
                 final i = (m['cantidad_instalada'] as num?)?.toDouble() ?? p;
-                final u = (m['unidad_medida'] ?? 'und').toString();
-                final desc = (m['descripcion'] ?? 'Material').toString();
+                // proyecto_materiales guarda item_descripcion y unidad (no descripcion
+                // ni unidad_medida): antes el acta mostraba "Material" y "und" en todo.
+                final u = (m['unidad'] ?? m['unidad_medida'] ?? 'und').toString();
+                final desc =
+                    (m['item_descripcion'] ?? m['descripcion'] ?? 'Material').toString();
                 return pw.TableRow(
                   decoration: pw.BoxDecoration(color: e.key.isOdd ? _light : _white),
                   children: [

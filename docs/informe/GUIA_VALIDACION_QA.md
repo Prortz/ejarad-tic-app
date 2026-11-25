@@ -132,10 +132,12 @@ Esperado: 15 tablas con RLS (el informe dice 15), ninguna sin RLS, las funciones
 3. **Paneles Cat 6A:** siguen inactivos; con cable Cat 6A el BOM mostrará el panel con un precio referencial hasta que actives uno con su precio real.
 
 ## 6. Registro de hallazgos
-Copia una fila por cada cosa que no coincida. Los defectos nuevos van a la Tabla 36 del informe (D-18 ya está registrado; los nuevos empiezan en D-19).
+Copia una fila por cada cosa que no coincida. Los defectos nuevos van a la Tabla 36 del informe (D-18 y D-19 ya están registrados; los nuevos empiezan en D-20).
 
 | Dónde | Qué pasó | Severidad | ¿Se corrige antes del 27/11? |
 |---|---|---|---|
 | Ejemplo: Fig. 43 | El panel de 48 salió con precio 0 | Baja | Sí |
 
 **Hallazgo de hoy, ya corregido y registrado como D-18 (informe, PPT y Anexo 03 ya dicen 18 defectos):** el cálculo de jacks y bobinas usaba decimales y fallaba en algunos conteos (50 puntos daban 56 jacks en vez de 55; 61 puntos × 50 m pedían 12 bobinas en vez de 11). Se cambió a aritmética exacta y se reforzaron dos pruebas existentes. Los defectos que encuentres en el recorrido empiezan en D-19.
+
+**Hallazgo del 24/11, corregido y registrado como D-19:** el acta As-Built en PDF mostraba "Material" y "und" en todas las filas de metrados porque leía columnas con otro nombre (`descripcion`, `unidad_medida`) en lugar de `item_descripcion` y `unidad`. Hay que generar de nuevo un acta con el APK actual para la Figura 55.
