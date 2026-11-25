@@ -14,6 +14,21 @@ class PdfService {
   static final _green   = PdfColor.fromHex('#065F46');
   static const _white   = PdfColors.white;
 
+  /// Fuente Roboto incrustada: la Helvetica por defecto del paquete pdf solo trae
+  /// caracteres Latin-1 y mostraba "▯" en lugar de guiones largos y viñetas.
+  static pw.ThemeData? _tema;
+  static Future<pw.ThemeData?> _temaPdf() async {
+    if (_tema != null) return _tema;
+    try {
+      final normal = pw.Font.ttf(await rootBundle.load('assets/fonts/Roboto-Regular.ttf'));
+      final negrita = pw.Font.ttf(await rootBundle.load('assets/fonts/Roboto-Bold.ttf'));
+      _tema = pw.ThemeData.withFont(base: normal, bold: negrita);
+    } catch (_) {
+      _tema = null; // sin la fuente se usa la de por defecto
+    }
+    return _tema;
+  }
+
   static Future<void> generarCotizacion({
     required String codigoCotizacion,
     required String razonSocial,
@@ -29,7 +44,7 @@ class PdfService {
     double imprevistos = 0.0,
     double imprevistosPorcentaje = 0.0,
   }) async {
-    final pdf = pw.Document();
+    final pdf = pw.Document(theme: await _temaPdf());
     final fmt = NumberFormat('#,##0.00', 'es_PE');
     final hoy = DateFormat('dd/MM/yyyy', 'es_PE').format(DateTime.now());
 
@@ -304,7 +319,9 @@ class PdfService {
     Map<String, dynamic>? coordenadasGps,
   }) async {
     final pdf = pw.Document(
-        title: 'Acta de Conformidad $codigoActa', author: 'EJARAD TIC');
+        title: 'Acta de Conformidad $codigoActa',
+        author: 'EJARAD TIC',
+        theme: await _temaPdf());
     final fLarga = DateFormat("dd 'de' MMMM 'de' yyyy", 'es');
     final fCorta = DateFormat('dd/MM/yyyy', 'es');
 
